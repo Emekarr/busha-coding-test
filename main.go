@@ -19,8 +19,10 @@ func main() {
 	}()
 
 	err := godotenv.Load()
-	if err != nil {
-		panic("could not load env variables")
+	if os.Getenv("GIN_MODE") != "release" {
+		if err != nil {
+			panic("could not load env variables")
+		}
 	}
 
 	StartServices()
